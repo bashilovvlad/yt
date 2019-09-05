@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.btn {
+  margin: 0;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 15px;
+  border: 1px solid #c6c6c6;
+  border-radius: 5px;
+}

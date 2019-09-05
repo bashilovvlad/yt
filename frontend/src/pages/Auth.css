@@ -1,0 +1,33 @@
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control label {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.form-control span {
+  margin-bottom: 5px;
+}
+
+.form-control__mail {
+  margin-bottom: 20px;
+}
+
+.form-control__password {
+  margin-bottom: 20px;
+}
+
+.form-actions button {
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid #d4cece;
+  border-radius: 5px;
+}
+
+.form-actions button:hover {
+  background: #d4cece;
+}

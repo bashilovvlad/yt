@@ -1,0 +1,7 @@
+{
+  "env": {
+    "MONGO_USER": "vlad",
+    "MONGO_PASSWORD": "T6qvrLP6T5fav0JC",
+    "MONGODB": "events-react-test"
+  }
+}
