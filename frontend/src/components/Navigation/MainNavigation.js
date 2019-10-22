@@ -4,10 +4,10 @@ import AuthContext from '../../context/auth-context';
 
 import './MainNavigation.css';
 
-const MainNavigation = () => {
-  return (
-    <AuthContext.Consumer>
-      {connext => (
+const MainNavigation = () => (
+  <AuthContext.Consumer>
+    {connext => {
+      return (
         <header className='main-navigation'>
           <div className='main-navigation__logo'>Application</div>
           <nav className='main-navigation__item'>
@@ -17,7 +17,6 @@ const MainNavigation = () => {
                   <NavLink to='/auth'>Authorization</NavLink>
                 </li>
               )}
-
               <li>
                 <NavLink to='/events'>Events</NavLink>
               </li>
@@ -36,9 +35,9 @@ const MainNavigation = () => {
             </ul>
           </nav>
         </header>
-      )}
-    </AuthContext.Consumer>
-  );
-};
+      );
+    }}
+  </AuthContext.Consumer>
+);
 
 export default MainNavigation;

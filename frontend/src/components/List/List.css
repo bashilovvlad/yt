@@ -1,0 +1,7 @@
+.list__item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid rgb(56, 110, 228);
+  display: flex;
+  justify-content: space-between;
+}

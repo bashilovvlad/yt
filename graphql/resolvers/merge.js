@@ -40,6 +40,7 @@ const singleEvent = async id => {
 const transformBooking = booking => {
   return {
     ...booking._doc,
+    33: 33,
     user: user.bind(this, booking._doc.user),
     event: singleEvent.bind(this, booking._doc.event),
     createdAt: dateToString(booking._doc.createdAt),

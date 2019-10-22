@@ -20,6 +20,19 @@ app.use(
 
 app.use(isAuth);
 
+// app.use((req, res, next) => {
+//   console.log(1);
+//   next();
+// });
+// app.use((req, res, next) => {
+//   console.log(2);
+//   next();
+// });
+// app.use((req, res, next) => {
+//   console.log(3);
+//   next();
+// });
+
 // Accept requests from our client
 
 app.use(

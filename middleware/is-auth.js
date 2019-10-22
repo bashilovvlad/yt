@@ -11,6 +11,7 @@ module.exports = (req, res, next) => {
 
   // token which we set when make request
   const token = authHeader.split(' ')[1];
+
   if (!token || token === '') {
     req.isAuth = false;
     return next();
@@ -32,7 +33,7 @@ module.exports = (req, res, next) => {
   //   { userId: user.id, email: user.email },
   //   'secretkey',
   //   {
-  //     expiresIn: '1h',
+  //     expiresIn: '10h',
   //   }
   // );
   req.isAuth = true;

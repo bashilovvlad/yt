@@ -1,64 +1,60 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { CookiesProvider, useCookies } from 'react-cookie';
 
 import Auth from './pages/Auth';
 import Events from './pages/Events';
 import Bookings from './pages/Bookings';
 
-import MainNavigation from './components/Navigation/MainNavigation';
+import MainNavigation from './components/Navigation/';
 
 import AuthContext from './context/auth-context';
 
 import './App.css';
 
-class App extends React.Component {
-  state = {
-    token: null,
-    userId: null,
-  };
+const App = () => {
+  const [cookies, setCookie] = useCookies(['token', 'userId']);
 
-  login = (token, userId, tokenExpiration) => {
+  const login = ({ token, userId, tokenExpiration }) => {
     if (token) {
-      this.setState({ token, userId });
+      setCookie('token', token, { maxAge: 3600 });
+      setCookie('userId', userId, { maxAge: 3600 });
     }
   };
 
-  logout = () => {
-    this.setState({ token: null, userId: null });
+  const logout = () => {
+    setCookie('token', '');
+    setCookie('userId', '');
   };
 
-  render() {
-    return (
+  return (
+    <CookiesProvider>
       <BrowserRouter>
         <AuthContext.Provider
           value={{
-            token: this.state.token,
-            userId: this.state.userId,
-            login: this.login,
-            logout: this.logout,
+            token: cookies.token,
+            userId: cookies.userId,
+            login: login,
+            logout: logout,
           }}
         >
           <MainNavigation />
           <main className='main'>
             <Switch>
-              {this.state.token && <Redirect from='/' to='/events' exact />}
-              {this.state.token && (
-                <Redirect from='/auth' to='/events ' exact />
-              )}
-              {!this.state.token && (
-                <Route path='/auth' component={Auth}></Route>
-              )}
+              {cookies.token && <Redirect from='/' to='/events' exact />}
+              {cookies.token && <Redirect from='/auth' to='/events ' exact />}
+              {!cookies.token && <Route path='/auth' component={Auth}></Route>}
               <Route path='/events' component={Events}></Route>
-              {this.state.token && (
+              {cookies.token && (
                 <Route path='/bookings' component={Bookings}></Route>
               )}
-              {!this.state.token && <Redirect to='/auth' exact />}
+              {!cookies.token && <Redirect to='/auth' exact />}
             </Switch>
           </main>
         </AuthContext.Provider>
       </BrowserRouter>
-    );
-  }
-}
+    </CookiesProvider>
+  );
+};
 
 export default App;
